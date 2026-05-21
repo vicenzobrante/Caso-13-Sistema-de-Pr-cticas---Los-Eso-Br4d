@@ -1,7 +1,9 @@
 {
   "dependencies": {
+    "apollo-server-express": "^3.13.0",
     "body-parser": "^2.2.2",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "graphql": "^16.14.0",
     "graphql-server-express": "^1.4.1",
