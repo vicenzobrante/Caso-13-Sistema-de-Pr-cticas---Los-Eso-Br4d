@@ -17,6 +17,9 @@ mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUn
 const Alumno = require('./models/Alumno');
 const Usuario = require('./models/Usuario');
 const Notificacion = require('./models/Notificacion');
+const Practica = require('./models/Practica');
+const Documento = require('./models/Documento');
+const InformePractica = require('./models/InformePractica');
 
 const typeDefs = gql`
     type Usuario {
@@ -48,7 +51,48 @@ const typeDefs = gql`
         getAlumnos: [Alumno]
         getNotificaciones: [Notificacion]
         getAlumno(id: ID!): Alumno
+        getPracticas: [Practica]
+        getPractica(id: ID!): Practica
     }
+
+    type Documento {
+        idDocumento: ID!
+        nombre: String!
+        fechaSubida: String!
+        urlArchivo: String!
+    }
+
+    type Docente {
+        id: ID!
+    }
+
+    type CentroPractica {
+        idCentro: ID!
+        nombreEmpresa: String!
+        direccion: String!
+        telefono: String!
+        rubro: String!
+    }
+
+    type InformePractica {
+        id: ID!
+        documento: Documento!
+        estado: Boolean!
+        observaciones: String
+    }
+
+    type Practica {
+        id: ID!
+        alumno: Alumno!
+        docente: Docente
+        centro: CentroPractica!
+        informe: InformePractica
+        fechaInicio: String!
+        fechaTermino: String!
+        tipo: String!
+        estado: String!
+    }
+
 `;
 
 const resolvers = {
@@ -57,6 +101,8 @@ const resolvers = {
         getAlumnos: async () => await Alumno.find().populate('usuario'),
         getNotificaciones: async () => await Notificacion.find().populate('usuario'),
         getAlumno: async (parent, args) => await Alumno.findById(args.id).populate('usuario'),
+        getPracticas: async () => await Practica.find().populate('alumno').populate('docente').populate('centro').populate({path: 'informe', populate: {path: 'documento'}}),
+        getPractica: async (parent, args) => await Practica.findById(args.id).populate('alumno').populate('docente').populate('centro').populate({path: 'informe', populate: {path: 'documento'}}),
     },
 };
 

@@ -7,3 +7,5 @@ const AlumnoSchema = new mongoose.Schema({
     semestre: Number,
     sede: {type: mongoose.Schema.Types.ObjectId, ref: 'Sede'},
 });
+
+module.exports = mongoose.model('Alumno', AlumnoSchema);

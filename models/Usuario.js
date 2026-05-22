@@ -1,12 +1,12 @@
-const moongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-const UsuarioSchema = new moongoose.Schema({
-  id: Number,
-  nombre: String,
-  apellido: String,
-  correo: String,
-  contrasena: String,
-  telefono: String
+const UsuarioSchema = new mongoose.Schema({
+    id: Number,
+    nombre: String,
+    apellido: String,
+    correo: String,
+    contrasena: String,
+    telefono: String
 });
 
-module.exports = moongoose.model('Usuario', UsuarioSchema);
+module.exports = mongoose.model('Usuario', UsuarioSchema);

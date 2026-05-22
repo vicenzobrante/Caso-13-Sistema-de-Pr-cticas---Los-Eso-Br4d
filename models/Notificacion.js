@@ -7,3 +7,5 @@ const NotificacionSchema = new mongoose.Schema({
     leido: Boolean,
     fechaEnvio: Date,
 });
+
+module.exports = mongoose.model('Notificacion', NotificacionSchema);
