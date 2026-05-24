@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const EmpleadorSchema = new mongoose.Schema({
     usuario: {type: mongoose.Schema.Types.ObjectId, ref: 'Usuario'},
-    empresa: String,
+    empresa: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CentroPractica',
+        required: true
+    },
     cargo: String,
 });
 

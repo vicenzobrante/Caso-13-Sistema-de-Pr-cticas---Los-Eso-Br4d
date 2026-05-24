@@ -12,16 +12,56 @@ const {merge} = require('lodash');
 mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('Conexión a MongoDB exitosa'))
     .catch(err => console.error('Error al conectar a MongoDB:', err));
+const GraphQLJSON = require('graphql-type-json');
 
+const Alumno = require('./models/Alumno'); //check
+const Usuario = require('./models/Usuario'); //check
+const Notificacion = require('./models/Notificacion');//check
+const Practica = require('./models/Practica');//check
+const Documento = require('./models/Documento');//check
+const InformePractica = require('./models/InformePractica');//check
+const Acta1 = require('./models/Acta1');//check
+const Acta2 = require('./models/Acta2');//check
+const ActaFinal = require('./models/ActaFinal');//check
+const Carrera = require('./models/Carrera');//check
+const CentroPractica = require('./models/CentroPractica');//check
+const CoordinadorCarrera = require('./models/CoordinadorCarrera');//check
+const Docente  = require('./models/Docente');//check
+const DocumentoApoyo = require('./models/DocumentoApoyo');//check
+const Empleador = require('./models/Empleador');//check
+const EvaluacionInformePractica = require('./models/EvaluacionInformePractica');//check
+const Formulario = require('./models/Formulario');//check
+const JefeCarrera = require('./models/JefeCarrera');//check
+const Sede = require('./models/Sede');//check
 
-const Alumno = require('./models/Alumno');
-const Usuario = require('./models/Usuario');
-const Notificacion = require('./models/Notificacion');
-const Practica = require('./models/Practica');
-const Documento = require('./models/Documento');
-const InformePractica = require('./models/InformePractica');
 
 const typeDefs = gql`
+    #Cosas miscelaneas
+    scalar JSON
+    type Carrera {
+        id: ID!
+        nombre: String!
+    }
+    type Sede {
+        id: ID!
+        nombre: String!
+        ubicacion: String!
+    }
+    type Notificacion {
+        id: ID!
+        usuario: Usuario!
+        mensaje: String!
+        leido: Boolean!
+        fechaEnvio: String!
+    }
+    type CentroPractica {
+        id: ID!
+        nombreEmpresa: String!
+        direccion: String!
+        telefono: String!
+        rubro: String!
+    }
+    # Usuarios....
     type Usuario {
         id: ID!
         nombre: String!
@@ -32,53 +72,54 @@ const typeDefs = gql`
     }
 
     type Alumno {
-        idAlumno: ID!
+        id: ID!
         usuario: Usuario!
-        carrera: String!
+        carrera: Carrera!
         semestre: Int!
     }
-
-    type Notificacion {
-        idNotificacion: ID!
+    type Docente {
+        id: ID!
         usuario: Usuario!
-        mensaje: String!
-        leido: Boolean!
-        fechaEnvio: String!
+        carrera: Carrera!
+        sede: Sede!
     }
-
-    type Query {
-        getUsuarios: [Usuario]
-        getAlumnos: [Alumno]
-        getNotificaciones: [Notificacion]
-        getAlumno(id: ID!): Alumno
-        getPracticas: [Practica]
-        getPractica(id: ID!): Practica
+    type CoordinadorCarrera {
+        id: ID!
+        usuario: Usuario!
+        carrera: Carrera!
+        sede: Sede!
     }
-
+    type Empleador {
+        id: ID!
+        usuario: Usuario!
+        empresa: CentroPractica!
+        cargo: String!
+    }
+    type JefeCarrera {
+        id: ID!
+        usuario: Usuario!
+        carrera: Carrera!
+        sede: Sede!
+    }
+    
+    
+    #Documentos!!!!
     type Documento {
-        idDocumento: ID!
+        id: ID!
         nombre: String!
         fechaSubida: String!
         urlArchivo: String!
     }
-
-    type Docente {
-        id: ID!
-    }
-
-    type CentroPractica {
-        idCentro: ID!
-        nombreEmpresa: String!
-        direccion: String!
-        telefono: String!
-        rubro: String!
-    }
-
     type InformePractica {
         id: ID!
         documento: Documento!
         estado: Boolean!
         observaciones: String
+    }
+    type DocumentoApoyo {
+        id: ID!
+        documento: Documento!
+        nombre: String!
     }
 
     type Practica {
@@ -92,7 +133,53 @@ const typeDefs = gql`
         tipo: String!
         estado: String!
     }
+    #Formularios !!!!!
+    type Formulario {
+        id: ID!
+        fecha: String!
+        estado: Boolean!
+    }
+    type Acta1 {
+        id: ID!
+        formulario: Formulario!
+        centrodepractica: CentroPractica!
+        online: Boolean!
+    }
+    type Acta2 {
+        id: ID!
+        formulario: Formulario!
+        criterios: JSON!
+        notaPonderada: Float
+                
+    }
+    type EvaluacionInformePractica {
+        id: ID!
+        formulario: Formulario!
+        criterios: JSON!
+        informePractica: InformePractica!
+        notaPonderada: Float
 
+    }
+    type ActaFinal {
+        id: ID!
+        formulario: Formulario!
+        acta2: Acta2!
+        evaluacionInformePractica: EvaluacionInformePractica!
+        notaPonderada: Float
+        
+    }
+    #TODO: QUERIES PARA EL REST BASICO PARA TODOS LOS TYPEDEFS
+    #TODO: MUTATIONS PARA TODOS LOS TYPEDEFS
+    type Query {
+        getUsuarios: [Usuario]
+        getAlumnos: [Alumno]
+        getNotificaciones: [Notificacion]
+        getAlumno(id: ID!): Alumno
+        getPracticas: [Practica]
+        getPractica(id: ID!): Practica
+    }
+    
+    #Favor colocar las mutations aca debajo de las queries solo por un tema de orden
 `;
 
 const resolvers = {

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const DocumentoSchema = new mongoose.Schema({
-    idDocumento: Number,
     nombre: {
         type: String,
         required: true

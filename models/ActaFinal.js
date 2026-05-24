@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const ActaFinalSchema = new mongoose.Schema({
+    formulario: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Formulario',
+        required: true
+    },
     evaluacion: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'EvaluacionInformePractica',
