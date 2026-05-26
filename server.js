@@ -74,8 +74,10 @@ const typeDefs = gql`
     type Alumno {
         id: ID!
         usuario: Usuario!
+        matricula: String!
         carrera: Carrera!
         semestre: Int!
+        sede: Sede!
     }
     type Docente {
         id: ID!
@@ -142,8 +144,10 @@ const typeDefs = gql`
     type Acta1 {
         id: ID!
         formulario: Formulario!
-        centrodepractica: CentroPractica!
+        centroDePractica: CentroPractica!
         online: Boolean!
+        tareas: String!
+        fechaTermino: String!
     }
     type Acta2 {
         id: ID!
@@ -171,6 +175,8 @@ const typeDefs = gql`
     #TODO: QUERIES PARA EL REST BASICO PARA TODOS LOS TYPEDEFS
     #TODO: MUTATIONS PARA TODOS LOS TYPEDEFS
     type Query {
+        #Todas las queries U.U
+        #Orden Alfabetico
         getActa1(id: ID!): Acta1
         getActas1: [Acta1]
         
@@ -217,7 +223,7 @@ const typeDefs = gql`
         getJefesCarrera: [JefeCarrera]
         
         getNotificacion(id: ID!): Notificacion
-        getNotifiaciones: [Notificacion]
+        getNotificaciones: [Notificacion]
 
         getPracticas: [Practica]
         getPractica(id: ID!): Practica
@@ -230,17 +236,221 @@ const typeDefs = gql`
         
     }
     
-    #Favor colocar las mutations aca debajo de las queries solo por un tema de orden
+    #Favor colocar las mutations aca debajo de las queries solo por un tema de orden que si no me estreso
 `;
 
 const resolvers = {
     Query: {
-        getUsuarios: async () => await Usuario.find(),
-        getAlumnos: async () => await Alumno.find().populate('usuario'),
-        getNotificaciones: async () => await Notificacion.find().populate('usuario'),
-        getAlumno: async (parent, args) => await Alumno.findById(args.id).populate('usuario'),
-        getPracticas: async () => await Practica.find().populate('alumno').populate('docente').populate('centro').populate({path: 'informe', populate: {path: 'documento'}}),
-        getPractica: async (parent, args) => await Practica.findById(args.id).populate('alumno').populate('docente').populate('centro').populate({path: 'informe', populate: {path: 'documento'}}),
+        //Tambien es orden alfabetico zzzzz
+        getActa1: async (parent, args) =>
+            await Acta1.findById(args.id)
+                .populate('formulario')
+                .populate('centroDePractica'),
+
+        getActas1: async () =>
+            await Acta1.find()
+                .populate('formulario')
+                .populate('centroDePractica'),
+
+        getActa2: async (parent, args) =>
+            await Acta2.findById(args.id)
+                .populate('formulario'),
+
+        getActas2: async () =>
+            await Acta2.find()
+                .populate('formulario'),
+
+        getActaFinal: async (parent, args) =>
+            await ActaFinal.findById(args.id)
+                .populate('formulario')
+                .populate('acta2')
+                .populate('evaluacionInformePractica'),
+
+        getActasFinal: async () =>
+            await ActaFinal.find()
+                .populate('formulario')
+                .populate('acta2')
+                .populate('evaluacionInformePractica'),
+
+        getAlumno: async (parent, args) =>
+            await Alumno.findById(args.id)
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getAlumnos: async () =>
+            await Alumno.find()
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getCarrera: async (parent, args) =>
+            await Carrera.findById(args.id),
+
+        getCarreras: async () =>
+            await Carrera.find(),
+
+        getCentroPractica: async (parent, args) =>
+            await CentroPractica.findById(args.id),
+
+        getCentrosPractica: async () =>
+            await CentroPractica.find(),
+
+        getCoordinadorCarrera: async (parent, args) =>
+            await CoordinadorCarrera.findById(args.id)
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getCoordinadoresCarrera: async () =>
+            await CoordinadorCarrera.find()
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getDocente: async (parent, args) =>
+            await Docente.findById(args.id)
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getDocentes: async () =>
+            await Docente.find()
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getDocumento: async (parent, args) =>
+            await Documento.findById(args.id),
+
+        getDocumentos: async () =>
+            await Documento.find(),
+
+        getDocumentoApoyo: async (parent, args) =>
+            await DocumentoApoyo.findById(args.id)
+                .populate('documento'),
+
+        getDocumentosApoyo: async () =>
+            await DocumentoApoyo.find()
+                .populate('documento'),
+
+        getEmpleador: async (parent, args) =>
+            await Empleador.findById(args.id)
+                .populate('usuario')
+                .populate('empresa'),
+
+        getEmpleadores: async () =>
+            await Empleador.find()
+                .populate('usuario')
+                .populate('empresa'),
+
+        getEvaluacionInformePractica: async (parent, args) =>
+            await EvaluacionInformePractica.findById(args.id)
+                .populate('formulario')
+                .populate('informePractica'),
+
+        getEvaluacionesInformesPractica: async () =>
+            await EvaluacionInformePractica.find()
+                .populate('formulario')
+                .populate('informePractica'),
+
+        getFormulario: async (parent, args) =>
+            await Formulario.findById(args.id),
+
+        getFormularios: async () =>
+            await Formulario.find(),
+
+        getInformePractica: async (parent, args) =>
+            await InformePractica.findById(args.id)
+                .populate('documento'),
+
+        getInformesPractica: async () =>
+            await InformePractica.find()
+                .populate('documento'),
+
+        getJefeCarrera: async (parent, args) =>
+            await JefeCarrera.findById(args.id)
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getJefesCarrera: async () =>
+            await JefeCarrera.find()
+                .populate('usuario')
+                .populate('carrera')
+                .populate('sede'),
+
+        getNotificacion: async (parent, args) =>
+            await Notificacion.findById(args.id)
+                .populate('usuario'),
+
+        getNotificaciones: async () =>
+            await Notificacion.find()
+                .populate('usuario'),
+
+        getPractica: async (parent, args) =>
+            await Practica.findById(args.id)
+                .populate({
+                    path: 'alumno',
+                    populate: [
+                        { path: 'usuario' },
+                        { path: 'carrera' },
+                        { path: 'sede' }
+                    ]
+                })
+                .populate({
+                    path: 'docente',
+                    populate: [
+                        { path: 'usuario' },
+                        { path: 'carrera' },
+                        { path: 'sede' }
+                    ]
+                })
+                .populate('centro')
+                .populate({
+                    path: 'informe',
+                    populate: {
+                        path: 'documento'
+                    }
+                }),
+
+        getPracticas: async () =>
+            await Practica.find()
+                .populate({
+                    path: 'alumno',
+                    populate: [
+                        { path: 'usuario' },
+                        { path: 'carrera' },
+                        { path: 'sede' }
+                    ]
+                })
+                .populate({
+                    path: 'docente',
+                    populate: [
+                        { path: 'usuario' },
+                        { path: 'carrera' },
+                        { path: 'sede' }
+                    ]
+                })
+                .populate('centro')
+                .populate({
+                    path: 'informe',
+                    populate: {
+                        path: 'documento'
+                    }
+                }),
+        getSede: async (parent, args) =>
+            await Sede.findById(args.id),
+
+        getSedes: async () =>
+            await Sede.find(),
+
+        getUsuario: async (parent, args) =>
+            await Usuario.findById(args.id),
+
+        getUsuarios: async () =>
+            await Usuario.find(),
+
     },
 };
 
