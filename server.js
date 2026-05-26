@@ -228,7 +228,6 @@ const typeDefs = gql`
         getUsuario(id: ID!): Usuario
         getUsuarios: [Usuario]
         
-        
     }
     
     #Favor colocar las mutations aca debajo de las queries solo por un tema de orden
