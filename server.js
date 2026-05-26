@@ -171,12 +171,64 @@ const typeDefs = gql`
     #TODO: QUERIES PARA EL REST BASICO PARA TODOS LOS TYPEDEFS
     #TODO: MUTATIONS PARA TODOS LOS TYPEDEFS
     type Query {
-        getUsuarios: [Usuario]
-        getAlumnos: [Alumno]
-        getNotificaciones: [Notificacion]
+        getActa1(id: ID!): Acta1
+        getActas1: [Acta1]
+        
+        getActa2(id: ID!): Acta2
+        getActas2: [Acta2]
+        
+        getActaFinal(id: ID!): ActaFinal
+        getActasFinal: [ActaFinal]
+
         getAlumno(id: ID!): Alumno
+        getAlumnos: [Alumno]
+        
+        getCarrera(id: ID!): Carrera
+        getCarreras: [Carrera]
+        
+        getCentroPractica(id: ID!): CentroPractica
+        getCentrosPractica: [CentroPractica]
+        
+        getCoordinadorCarrera(id: ID!): CoordinadorCarrera
+        getCoordinadoresCarrera: [CoordinadorCarrera]
+        
+        getDocente(id: ID!): Docente
+        getDocentes: [Docente]
+        
+        getDocumento(id: ID!): Documento
+        getDocumentos: [Documento]
+        
+        getDocumentoApoyo(id: ID!): DocumentoApoyo
+        getDocumentosApoyo: [DocumentoApoyo]
+        
+        getEmpleador(id: ID!): Empleador
+        getEmpleadores: [Empleador]
+        
+        getEvaluacionInformePractica(id: ID!): EvaluacionInformePractica
+        getEvaluacionesInformesPractica: [EvaluacionInformePractica]
+        
+        getFormulario(id: ID!): Formulario
+        getFormularios: [Formulario]
+        
+        getInformePractica(id: ID!): InformePractica
+        getInformesPractica: [InformePractica]
+        
+        getJefeCarrera(id: ID!): JefeCarrera
+        getJefesCarrera: [JefeCarrera]
+        
+        getNotificacion(id: ID!): Notificacion
+        getNotifiaciones: [Notificacion]
+
         getPracticas: [Practica]
         getPractica(id: ID!): Practica
+        
+        getSede(id: ID!): Sede
+        getSedes: [Sede]
+        
+        getUsuario(id: ID!): Usuario
+        getUsuarios: [Usuario]
+        
+        
     }
     
     #Favor colocar las mutations aca debajo de las queries solo por un tema de orden
