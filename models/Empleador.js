@@ -1,13 +1,10 @@
 const mongoose = require('mongoose');
-
+const Usuario = require('./Usuario');
 const EmpleadorSchema = new mongoose.Schema({
-    usuario: {type: mongoose.Schema.Types.ObjectId, ref: 'Usuario'},
-    empresa: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'CentroPractica',
-        required: true
-    },
+    empresa: String, 
     cargo: String,
 });
-
-module.exports = mongoose.model('Empleador', EmpleadorSchema);
+module.exports = Usuario.discriminator(
+    'Empleador',
+    EmpleadorSchema
+);

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-
+const Usuario = require('./Usuario');
 const JefeCarreraSchema = new mongoose.Schema({
-    usuario: {type: mongoose.Schema.Types.ObjectId, ref: 'Usuario'},
-    carrera: {type: mongoose.Schema.Types.ObjectId, ref: 'Carrera'},
-    sede: {type: mongoose.Schema.Types.ObjectId, ref: 'Sede'},
+    carrera: { type: mongoose.Schema.Types.ObjectId, ref: 'Carrera', },
+    sede: { type: mongoose.Schema.Types.ObjectId, ref: 'Sede', },
 });
-
-module.exports = mongoose.model('JefeCarrera', JefeCarreraSchema);
+module.exports = Usuario.discriminator(
+    'JefeCarrera',
+    JefeCarreraSchema
+);
