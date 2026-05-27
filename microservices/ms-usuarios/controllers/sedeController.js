@@ -30,7 +30,7 @@ exports.getSedeById = async (
 
         const sede =
             await sedeService.getSedeById(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(sede);
@@ -72,7 +72,7 @@ exports.actualizarSede = async (
 
         const sede =
             await sedeService.actualizarSede(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -94,7 +94,7 @@ exports.eliminarSede = async (
 
         const sede =
             await sedeService.eliminarSede(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(sede);

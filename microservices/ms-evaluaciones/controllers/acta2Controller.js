@@ -16,7 +16,7 @@ exports.getActa2ById = async (req, res, next) => {
     try {
 
         const acta2 =
-            await acta2Service.getActa2ById(req.params.id);
+            await acta2Service.getActa2ById(req.params._id);
 
         res.status(200).json(acta2);
 
@@ -43,7 +43,7 @@ exports.actualizarActa2 = async (req, res, next) => {
 
         const acta2Actualizado =
             await acta2Service.actualizarActa2(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -58,7 +58,7 @@ exports.eliminarActa2 = async (req, res, next) => {
     try {
 
         const resultado =
-            await acta2Service.eliminarActa2(req.params.id);
+            await acta2Service.eliminarActa2(req.params._id);
 
         res.status(200).json(resultado);
 

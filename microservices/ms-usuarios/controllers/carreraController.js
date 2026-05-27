@@ -30,7 +30,7 @@ exports.getCarreraById = async (
 
         const carrera =
             await carreraService.getCarreraById(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(carrera);
@@ -72,7 +72,7 @@ exports.actualizarCarrera = async (
 
         const carrera =
             await carreraService.actualizarCarrera(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -94,7 +94,7 @@ exports.eliminarCarrera = async (
 
         const carrera =
             await carreraService.eliminarCarrera(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(carrera);

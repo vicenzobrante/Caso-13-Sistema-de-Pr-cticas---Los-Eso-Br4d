@@ -10,7 +10,7 @@ const typeDefs = gql`
   # ─── Tipos de dominio ──────────────────────────────────────────────
 
   type Usuario {
-    id: ID!
+    _id: ID!
     nombre: String!
     apellido: String!
     correo: String!
@@ -18,18 +18,18 @@ const typeDefs = gql`
   }
 
   type Carrera {
-    id: ID!
+    _id: ID!
     nombre: String!
   }
 
   type Sede {
-    id: ID!
+    _id: ID!
     nombre: String!
     ubicacion: String!
   }
 
   type Alumno {
-    id: ID!
+    _id: ID!
     usuario: Usuario!
     matricula: String!
     carrera: Carrera!
@@ -38,35 +38,35 @@ const typeDefs = gql`
   }
 
   type Docente {
-    id: ID!
+    _id: ID!
     usuario: Usuario!
     carrera: Carrera!
     sede: Sede!
   }
 
   type CoordinadorCarrera {
-    id: ID!
+    _id: ID!
     usuario: Usuario!
     carrera: Carrera!
     sede: Sede!
   }
 
   type JefeCarrera {
-    id: ID!
+    _id: ID!
     usuario: Usuario!
     carrera: Carrera!
     sede: Sede!
   }
 
   type Empleador {
-    id: ID!
+    _id: ID!
     usuario: Usuario!
     empresa: CentroPractica!
     cargo: String
   }
 
   type CentroPractica {
-    id: ID!
+    _id: ID!
     nombreEmpresa: String!
     direccion: String!
     telefono: String
@@ -74,7 +74,7 @@ const typeDefs = gql`
   }
 
   type Practica {
-    id: ID!
+    _id: ID!
     alumno: Alumno!
     docente: Docente
     centro: CentroPractica!
@@ -86,33 +86,33 @@ const typeDefs = gql`
   }
 
   type Documento {
-    id: ID!
+    _id: ID!
     nombre: String!
     fechaSubida: String!
     urlArchivo: String!
   }
 
   type DocumentoApoyo {
-    id: ID!
+    _id: ID!
     documento: Documento!
     nombre: String!
   }
 
   type InformePractica {
-    id: ID!
+    _id: ID!
     documento: Documento!
     estado: Boolean!
     observaciones: String
   }
 
   type Formulario {
-    id: ID!
+    _id: ID!
     fecha: String!
     estado: Boolean!
   }
 
   type Acta1 {
-    id: ID!
+    _id: ID!
     formulario: Formulario!
     centroDePractica: CentroPractica!
     online: Boolean!
@@ -121,14 +121,14 @@ const typeDefs = gql`
   }
 
   type Acta2 {
-    id: ID!
+    _id: ID!
     formulario: Formulario!
     criterios: JSON!
     notaPonderada: Float
   }
 
   type EvaluacionInformePractica {
-    id: ID!
+    _id: ID!
     formulario: Formulario!
     criterios: JSON!
     informePractica: InformePractica!
@@ -136,7 +136,7 @@ const typeDefs = gql`
   }
 
   type ActaFinal {
-    id: ID!
+    _id: ID!
     formulario: Formulario!
     acta2: Acta2!
     evaluacionInformePractica: EvaluacionInformePractica!
@@ -144,7 +144,7 @@ const typeDefs = gql`
   }
 
   type Notificacion {
-    id: ID!
+    _id: ID!
     usuarioId: ID!
     mensaje: String!
     leido: Boolean!
@@ -308,51 +308,51 @@ const typeDefs = gql`
 
   type Query {
     # Usuarios
-    getUsuario(id: ID!): Usuario
+    getUsuario(_id: ID!): Usuario
     getUsuarios: [Usuario]
-    getAlumno(id: ID!): Alumno
+    getAlumno(_id: ID!): Alumno
     getAlumnos: [Alumno]
-    getDocente(id: ID!): Docente
+    getDocente(_id: ID!): Docente
     getDocentes: [Docente]
-    getCoordinadorCarrera(id: ID!): CoordinadorCarrera
+    getCoordinadorCarrera(_id: ID!): CoordinadorCarrera
     getCoordinadoresCarrera: [CoordinadorCarrera]
-    getJefeCarrera(id: ID!): JefeCarrera
+    getJefeCarrera(_id: ID!): JefeCarrera
     getJefesCarrera: [JefeCarrera]
-    getEmpleador(id: ID!): Empleador
+    getEmpleador(_id: ID!): Empleador
     getEmpleadores: [Empleador]
-    getCarrera(id: ID!): Carrera
+    getCarrera(_id: ID!): Carrera
     getCarreras: [Carrera]
-    getSede(id: ID!): Sede
+    getSede(_id: ID!): Sede
     getSedes: [Sede]
 
     # Practicas
-    getPractica(id: ID!): Practica
+    getPractica(_id: ID!): Practica
     getPracticas: [Practica]
-    getCentroPractica(id: ID!): CentroPractica
+    getCentroPractica(_id: ID!): CentroPractica
     getCentrosPractica: [CentroPractica]
 
     # Documentos
-    getDocumento(id: ID!): Documento
+    getDocumento(_id: ID!): Documento
     getDocumentos: [Documento]
-    getDocumentoApoyo(id: ID!): DocumentoApoyo
+    getDocumentoApoyo(_id: ID!): DocumentoApoyo
     getDocumentosApoyo: [DocumentoApoyo]
-    getInformePractica(id: ID!): InformePractica
+    getInformePractica(_id: ID!): InformePractica
     getInformesPractica: [InformePractica]
 
     # Evaluaciones
-    getFormulario(id: ID!): Formulario
+    getFormulario(_id: ID!): Formulario
     getFormularios: [Formulario]
-    getActa1(id: ID!): Acta1
+    getActa1(_id: ID!): Acta1
     getActas1: [Acta1]
-    getActa2(id: ID!): Acta2
+    getActa2(_id: ID!): Acta2
     getActas2: [Acta2]
-    getEvaluacionInformePractica(id: ID!): EvaluacionInformePractica
+    getEvaluacionInformePractica(_id: ID!): EvaluacionInformePractica
     getEvaluacionesInformesPractica: [EvaluacionInformePractica]
-    getActaFinal(id: ID!): ActaFinal
+    getActaFinal(_id: ID!): ActaFinal
     getActasFinal: [ActaFinal]
 
     # Notificaciones
-    getNotificacion(id: ID!): Notificacion
+    getNotificacion(_id: ID!): Notificacion
     getNotificaciones: [Notificacion]
     getNotificacionesPorUsuario(usuarioId: ID!): [Notificacion]
   }
@@ -362,70 +362,70 @@ const typeDefs = gql`
   type Mutation {
     # Usuarios
     createUsuario(input: UsuarioInput!): Usuario
-    updateUsuario(id: ID!, input: UsuarioUpdateInput!): Usuario
-    deleteUsuario(id: ID!): Usuario
+    updateUsuario(_id: ID!, input: UsuarioUpdateInput!): Usuario
+    deleteUsuario(_id: ID!): Usuario
     createAlumno(input: AlumnoInput!): Alumno
-    updateAlumno(id: ID!, input: AlumnoUpdateInput!): Alumno
-    deleteAlumno(id: ID!): Alumno
+    updateAlumno(_id: ID!, input: AlumnoUpdateInput!): Alumno
+    deleteAlumno(_id: ID!): Alumno
     createDocente(input: DocenteInput!): Docente
-    updateDocente(id: ID!, input: DocenteUpdateInput!): Docente
-    deleteDocente(id: ID!): Docente
+    updateDocente(_id: ID!, input: DocenteUpdateInput!): Docente
+    deleteDocente(_id: ID!): Docente
     createCoordinadorCarrera(input: CoordinadorCarreraInput!): CoordinadorCarrera
-    updateCoordinadorCarrera(id: ID!, input: CoordinadorCarreraUpdateInput!): CoordinadorCarrera
-    deleteCoordinadorCarrera(id: ID!): CoordinadorCarrera
+    updateCoordinadorCarrera(_id: ID!, input: CoordinadorCarreraUpdateInput!): CoordinadorCarrera
+    deleteCoordinadorCarrera(_id: ID!): CoordinadorCarrera
     createJefeCarrera(input: JefeCarreraInput!): JefeCarrera
-    updateJefeCarrera(id: ID!, input: JefeCarreraUpdateInput!): JefeCarrera
-    deleteJefeCarrera(id: ID!): JefeCarrera
+    updateJefeCarrera(_id: ID!, input: JefeCarreraUpdateInput!): JefeCarrera
+    deleteJefeCarrera(_id: ID!): JefeCarrera
     createEmpleador(input: EmpleadorInput!): Empleador
-    updateEmpleador(id: ID!, input: EmpleadorUpdateInput!): Empleador
-    deleteEmpleador(id: ID!): Empleador
+    updateEmpleador(_id: ID!, input: EmpleadorUpdateInput!): Empleador
+    deleteEmpleador(_id: ID!): Empleador
     createCarrera(input: CarreraInput!): Carrera
-    updateCarrera(id: ID!, input: CarreraUpdateInput!): Carrera
-    deleteCarrera(id: ID!): Carrera
+    updateCarrera(_id: ID!, input: CarreraUpdateInput!): Carrera
+    deleteCarrera(_id: ID!): Carrera
     createSede(input: SedeInput!): Sede
-    updateSede(id: ID!, input: SedeUpdateInput!): Sede
-    deleteSede(id: ID!): Sede
+    updateSede(_id: ID!, input: SedeUpdateInput!): Sede
+    deleteSede(_id: ID!): Sede
 
     # Practicas
     createPractica(input: PracticaInput!): Practica
-    updatePractica(id: ID!, input: PracticaUpdateInput!): Practica
-    deletePractica(id: ID!): Practica
+    updatePractica(_id: ID!, input: PracticaUpdateInput!): Practica
+    deletePractica(_id: ID!): Practica
     createCentroPractica(input: CentroPracticaInput!): CentroPractica
-    updateCentroPractica(id: ID!, input: CentroPracticaUpdateInput!): CentroPractica
-    deleteCentroPractica(id: ID!): CentroPractica
+    updateCentroPractica(_id: ID!, input: CentroPracticaUpdateInput!): CentroPractica
+    deleteCentroPractica(_id: ID!): CentroPractica
 
     # Documentos
     createDocumento(input: DocumentoInput!): Documento
-    updateDocumento(id: ID!, input: DocumentoUpdateInput!): Documento
-    deleteDocumento(id: ID!): Documento
+    updateDocumento(_id: ID!, input: DocumentoUpdateInput!): Documento
+    deleteDocumento(_id: ID!): Documento
     createDocumentoApoyo(input: DocumentoApoyoInput!): DocumentoApoyo
-    updateDocumentoApoyo(id: ID!, input: DocumentoApoyoUpdateInput!): DocumentoApoyo
-    deleteDocumentoApoyo(id: ID!): DocumentoApoyo
+    updateDocumentoApoyo(_id: ID!, input: DocumentoApoyoUpdateInput!): DocumentoApoyo
+    deleteDocumentoApoyo(_id: ID!): DocumentoApoyo
     createInformePractica(input: InformePracticaInput!): InformePractica
-    updateInformePractica(id: ID!, input: InformePracticaUpdateInput!): InformePractica
-    deleteInformePractica(id: ID!): InformePractica
+    updateInformePractica(_id: ID!, input: InformePracticaUpdateInput!): InformePractica
+    deleteInformePractica(_id: ID!): InformePractica
 
     # Evaluaciones
     createFormulario(input: FormularioInput!): Formulario
-    updateFormulario(id: ID!, input: FormularioUpdateInput!): Formulario
-    deleteFormulario(id: ID!): Formulario
+    updateFormulario(_id: ID!, input: FormularioUpdateInput!): Formulario
+    deleteFormulario(_id: ID!): Formulario
     createActa1(input: Acta1Input!): Acta1
-    updateActa1(id: ID!, input: Acta1UpdateInput!): Acta1
-    deleteActa1(id: ID!): Acta1
+    updateActa1(_id: ID!, input: Acta1UpdateInput!): Acta1
+    deleteActa1(_id: ID!): Acta1
     createActa2(input: Acta2Input!): Acta2
-    updateActa2(id: ID!, input: Acta2UpdateInput!): Acta2
-    deleteActa2(id: ID!): Acta2
+    updateActa2(_id: ID!, input: Acta2UpdateInput!): Acta2
+    deleteActa2(_id: ID!): Acta2
     createEvaluacionInformePractica(input: EvaluacionInformePracticaInput!): EvaluacionInformePractica
-    updateEvaluacionInformePractica(id: ID!, input: EvaluacionInformePracticaUpdateInput!): EvaluacionInformePractica
-    deleteEvaluacionInformePractica(id: ID!): EvaluacionInformePractica
+    updateEvaluacionInformePractica(_id: ID!, input: EvaluacionInformePracticaUpdateInput!): EvaluacionInformePractica
+    deleteEvaluacionInformePractica(_id: ID!): EvaluacionInformePractica
     createActaFinal(input: ActaFinalInput!): ActaFinal
-    updateActaFinal(id: ID!, input: ActaFinalUpdateInput!): ActaFinal
-    deleteActaFinal(id: ID!): ActaFinal
+    updateActaFinal(_id: ID!, input: ActaFinalUpdateInput!): ActaFinal
+    deleteActaFinal(_id: ID!): ActaFinal
 
     # Notificaciones
     createNotificacion(input: NotificacionInput!): Notificacion
-    updateNotificacion(id: ID!, input: NotificacionUpdateInput!): Notificacion
-    deleteNotificacion(id: ID!): Notificacion
+    updateNotificacion(_id: ID!, input: NotificacionUpdateInput!): Notificacion
+    deleteNotificacion(_id: ID!): Notificacion
   }
 `;
 

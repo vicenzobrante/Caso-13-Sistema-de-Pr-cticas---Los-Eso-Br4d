@@ -19,7 +19,7 @@ exports.getJefeCarreraById = async (req, res, next) => {
 
         const jefe =
             await jefeCarreraService.getJefeCarreraById(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(jefe);
@@ -47,7 +47,7 @@ exports.actualizarJefeCarrera = async (req, res, next) => {
 
         const jefeActualizado =
             await jefeCarreraService.actualizarJefeCarrera(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -63,7 +63,7 @@ exports.eliminarJefeCarrera = async (req, res, next) => {
 
         const resultado =
             await jefeCarreraService.eliminarJefeCarrera(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(resultado);

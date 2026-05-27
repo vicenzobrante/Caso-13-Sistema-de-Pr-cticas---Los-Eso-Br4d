@@ -16,7 +16,7 @@ exports.getDocenteById = async (req, res, next) => {
     try {
 
         const docente =
-            await docenteService.getDocenteById(req.params.id);
+            await docenteService.getDocenteById(req.params._id);
 
         res.status(200).json(docente);
 
@@ -43,7 +43,7 @@ exports.actualizarDocente = async (req, res, next) => {
 
         const docenteActualizado =
             await docenteService.actualizarDocente(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -58,7 +58,7 @@ exports.eliminarDocente = async (req, res, next) => {
     try {
 
         const resultado =
-            await docenteService.eliminarDocente(req.params.id);
+            await docenteService.eliminarDocente(req.params._id);
 
         res.status(200).json(resultado);
 

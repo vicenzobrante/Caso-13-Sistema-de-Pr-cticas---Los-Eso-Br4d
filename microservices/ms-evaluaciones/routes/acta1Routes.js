@@ -13,7 +13,7 @@ router.get(
 );
 
 router.get(
-    '/:id',
+    '/:_id',
     authMiddleware,
     acta1Controller.getActa1ById
 );
@@ -25,13 +25,13 @@ router.post(
 );
 
 router.put(
-    '/:id',
+    '/:_id',
     authMiddleware,
     acta1Controller.actualizarActa1
 );
 
 router.delete(
-    '/:id',
+    '/:_id',
     authMiddleware,
     acta1Controller.eliminarActa1
 );

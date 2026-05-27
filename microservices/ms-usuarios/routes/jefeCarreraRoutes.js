@@ -8,31 +8,31 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     jefeCarreraController.getJefesCarrera
 );
 
 router.get(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     jefeCarreraController.getJefeCarreraById
 );
 
 router.post(
     '/',
-    authMiddleware,
+    //authMiddleware,
     jefeCarreraController.crearJefeCarrera
 );
 
 router.put(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     jefeCarreraController.actualizarJefeCarrera
 );
 
 router.delete(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     jefeCarreraController.eliminarJefeCarrera
 );
 

@@ -8,31 +8,31 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     empleadorController.getEmpleadores
 );
 
 router.get(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     empleadorController.getEmpleadorById
 );
 
 router.post(
     '/',
-    authMiddleware,
+    //authMiddleware,
     empleadorController.crearEmpleador
 );
 
 router.put(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     empleadorController.actualizarEmpleador
 );
 
 router.delete(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     empleadorController.eliminarEmpleador
 );
 

@@ -19,7 +19,7 @@ exports.getEmpleadorById = async (req, res, next) => {
 
         const empleador =
             await empleadorService.getEmpleadorById(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(empleador);
@@ -47,7 +47,7 @@ exports.actualizarEmpleador = async (req, res, next) => {
 
         const empleadorActualizado =
             await empleadorService.actualizarEmpleador(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -63,7 +63,7 @@ exports.eliminarEmpleador = async (req, res, next) => {
 
         const resultado =
             await empleadorService.eliminarEmpleador(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(resultado);

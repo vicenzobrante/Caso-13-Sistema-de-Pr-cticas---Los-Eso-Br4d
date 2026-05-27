@@ -11,7 +11,7 @@ router.get(
 );
 
 router.get(
-    '/:id',
+    '/:_id',
     carreraController.getCarreraById
 );
 
@@ -21,12 +21,12 @@ router.post(
 );
 
 router.put(
-    '/:id',
+    '/:_id',
     carreraController.actualizarCarrera
 );
 
 router.delete(
-    '/:id',
+    '/:_id',
     carreraController.eliminarCarrera
 );
 

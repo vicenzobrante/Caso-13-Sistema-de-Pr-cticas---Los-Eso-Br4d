@@ -16,7 +16,7 @@ exports.getActa1ById = async (req, res, next) => {
     try {
 
         const acta1 =
-            await acta1Service.getActa1ById(req.params.id);
+            await acta1Service.getActa1ById(req.params._id);
 
         res.status(200).json(acta1);
 
@@ -43,7 +43,7 @@ exports.actualizarActa1 = async (req, res, next) => {
 
         const acta1Actualizado =
             await acta1Service.actualizarActa1(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -58,7 +58,7 @@ exports.eliminarActa1 = async (req, res, next) => {
     try {
 
         const resultado =
-            await acta1Service.eliminarActa1(req.params.id);
+            await acta1Service.eliminarActa1(req.params._id);
 
         res.status(200).json(resultado);
 

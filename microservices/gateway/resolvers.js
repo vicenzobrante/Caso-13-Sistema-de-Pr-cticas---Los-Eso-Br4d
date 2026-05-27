@@ -116,51 +116,51 @@ const resolvers = {
 
   Query: {
     // Usuarios
-    getUsuario: (_, { id }) => get('usuarios', `/usuarios/${id}`),
+    getUsuario: (_, { _id }) => get('usuarios', `/usuarios/${_id}`),
     getUsuarios: () => get('usuarios', '/usuarios'),
-    getAlumno: (_, { id }) => get('usuarios', `/alumnos/${id}`),
+    getAlumno: (_, { _id }) => get('usuarios', `/alumnos/${_id}`),
     getAlumnos: () => get('usuarios', '/alumnos'),
-    getDocente: (_, { id }) => get('usuarios', `/docentes/${id}`),
+    getDocente: (_, { _id }) => get('usuarios', `/docentes/${_id}`),
     getDocentes: () => get('usuarios', '/docentes'),
-    getCoordinadorCarrera: (_, { id }) => get('usuarios', `/coordinadores/${id}`),
+    getCoordinadorCarrera: (_, { _id }) => get('usuarios', `/coordinadores/${_id}`),
     getCoordinadoresCarrera: () => get('usuarios', '/coordinadores'),
-    getJefeCarrera: (_, { id }) => get('usuarios', `/jefes/${id}`),
+    getJefeCarrera: (_, { _id }) => get('usuarios', `/jefes/${_id}`),
     getJefesCarrera: () => get('usuarios', '/jefes'),
-    getEmpleador: (_, { id }) => get('usuarios', `/empleadores/${id}`),
+    getEmpleador: (_, { _id }) => get('usuarios', `/empleadores/${_id}`),
     getEmpleadores: () => get('usuarios', '/empleadores'),
-    getCarrera: (_, { id }) => get('usuarios', `/carreras/${id}`),
+    getCarrera: (_, { _id }) => get('usuarios', `/carreras/${_id}`),
     getCarreras: () => get('usuarios', '/carreras'),
-    getSede: (_, { id }) => get('usuarios', `/sedes/${id}`),
+    getSede: (_, { _id }) => get('usuarios', `/sedes/${_id}`),
     getSedes: () => get('usuarios', '/sedes'),
 
     // Practicas
-    getPractica: (_, { id }) => get('practicas', `/practicas/${id}`),
+    getPractica: (_, { _id }) => get('practicas', `/practicas/${_id}`),
     getPracticas: () => get('practicas', '/practicas'),
-    getCentroPractica: (_, { id }) => get('practicas', `/centros/${id}`),
+    getCentroPractica: (_, { _id }) => get('practicas', `/centros/${_id}`),
     getCentrosPractica: () => get('practicas', '/centros'),
 
     // Documentos
-    getDocumento: (_, { id }) => get('documentos', `/documentos/${id}`),
+    getDocumento: (_, { _id }) => get('documentos', `/documentos/${_id}`),
     getDocumentos: () => get('documentos', '/documentos'),
-    getDocumentoApoyo: (_, { id }) => get('documentos', `/apoyo/${id}`),
+    getDocumentoApoyo: (_, { _id }) => get('documentos', `/apoyo/${_id}`),
     getDocumentosApoyo: () => get('documentos', '/apoyo'),
-    getInformePractica: (_, { id }) => get('documentos', `/informes/${id}`),
+    getInformePractica: (_, { _id }) => get('documentos', `/informes/${_id}`),
     getInformesPractica: () => get('documentos', '/informes'),
 
     // Evaluaciones
-    getFormulario: (_, { id }) => get('evaluaciones', `/formularios/${id}`),
+    getFormulario: (_, { _id }) => get('evaluaciones', `/formularios/${_id}`),
     getFormularios: () => get('evaluaciones', '/formularios'),
-    getActa1: (_, { id }) => get('evaluaciones', `/actas1/${id}`),
+    getActa1: (_, { _id }) => get('evaluaciones', `/actas1/${_id}`),
     getActas1: () => get('evaluaciones', '/actas1'),
-    getActa2: (_, { id }) => get('evaluaciones', `/actas2/${id}`),
+    getActa2: (_, { _id }) => get('evaluaciones', `/actas2/${_id}`),
     getActas2: () => get('evaluaciones', '/actas2'),
-    getEvaluacionInformePractica: (_, { id }) => get('evaluaciones', `/evaluaciones/${id}`),
+    getEvaluacionInformePractica: (_, { _id }) => get('evaluaciones', `/evaluaciones/${_id}`),
     getEvaluacionesInformesPractica: () => get('evaluaciones', '/evaluaciones'),
-    getActaFinal: (_, { id }) => get('evaluaciones', `/actasfinal/${id}`),
+    getActaFinal: (_, { _id }) => get('evaluaciones', `/actasfinal/${_id}`),
     getActasFinal: () => get('evaluaciones', '/actasfinal'),
 
     // Notificaciones
-    getNotificacion: (_, { id }) => get('notificaciones', `/notificaciones/${id}`),
+    getNotificacion: (_, { _id }) => get('notificaciones', `/notificaciones/${_id}`),
     getNotificaciones: () => get('notificaciones', '/notificaciones'),
     getNotificacionesPorUsuario: (_, { usuarioId }) =>
       get('notificaciones', `/notificaciones/usuario/${usuarioId}`),
@@ -171,85 +171,85 @@ const resolvers = {
   Mutation: {
     // Usuarios
     createUsuario: (_, { input }) => post('usuarios', '/usuarios', input),
-    updateUsuario: (_, { id, input }) => put('usuarios', `/usuarios/${id}`, input),
-    deleteUsuario: (_, { id }) => del('usuarios', `/usuarios/${id}`),
+    updateUsuario: (_, { _id, input }) => put('usuarios', `/usuarios/${_id}`, input),
+    deleteUsuario: (_, { _id }) => del('usuarios', `/usuarios/${_id}`),
 
     createAlumno: (_, { input }) => post('usuarios', '/alumnos', input),
-    updateAlumno: (_, { id, input }) => put('usuarios', `/alumnos/${id}`, input),
-    deleteAlumno: (_, { id }) => del('usuarios', `/alumnos/${id}`),
+    updateAlumno: (_, { _id, input }) => put('usuarios', `/alumnos/${_id}`, input),
+    deleteAlumno: (_, { _id }) => del('usuarios', `/alumnos/${_id}`),
 
     createDocente: (_, { input }) => post('usuarios', '/docentes', input),
-    updateDocente: (_, { id, input }) => put('usuarios', `/docentes/${id}`, input),
-    deleteDocente: (_, { id }) => del('usuarios', `/docentes/${id}`),
+    updateDocente: (_, { _id, input }) => put('usuarios', `/docentes/${_id}`, input),
+    deleteDocente: (_, { _id }) => del('usuarios', `/docentes/${_id}`),
 
     createCoordinadorCarrera: (_, { input }) => post('usuarios', '/coordinadores', input),
-    updateCoordinadorCarrera: (_, { id, input }) => put('usuarios', `/coordinadores/${id}`, input),
-    deleteCoordinadorCarrera: (_, { id }) => del('usuarios', `/coordinadores/${id}`),
+    updateCoordinadorCarrera: (_, { _id, input }) => put('usuarios', `/coordinadores/${_id}`, input),
+    deleteCoordinadorCarrera: (_, { _id }) => del('usuarios', `/coordinadores/${_id}`),
 
     createJefeCarrera: (_, { input }) => post('usuarios', '/jefes', input),
-    updateJefeCarrera: (_, { id, input }) => put('usuarios', `/jefes/${id}`, input),
-    deleteJefeCarrera: (_, { id }) => del('usuarios', `/jefes/${id}`),
+    updateJefeCarrera: (_, { _id, input }) => put('usuarios', `/jefes/${_id}`, input),
+    deleteJefeCarrera: (_, { _id }) => del('usuarios', `/jefes/${_id}`),
 
     createEmpleador: (_, { input }) => post('usuarios', '/empleadores', input),
-    updateEmpleador: (_, { id, input }) => put('usuarios', `/empleadores/${id}`, input),
-    deleteEmpleador: (_, { id }) => del('usuarios', `/empleadores/${id}`),
+    updateEmpleador: (_, { _id, input }) => put('usuarios', `/empleadores/${_id}`, input),
+    deleteEmpleador: (_, { _id }) => del('usuarios', `/empleadores/${_id}`),
 
     createCarrera: (_, { input }) => post('usuarios', '/carreras', input),
-    updateCarrera: (_, { id, input }) => put('usuarios', `/carreras/${id}`, input),
-    deleteCarrera: (_, { id }) => del('usuarios', `/carreras/${id}`),
+    updateCarrera: (_, { _id, input }) => put('usuarios', `/carreras/${_id}`, input),
+    deleteCarrera: (_, { _id }) => del('usuarios', `/carreras/${_id}`),
 
     createSede: (_, { input }) => post('usuarios', '/sedes', input),
-    updateSede: (_, { id, input }) => put('usuarios', `/sedes/${id}`, input),
-    deleteSede: (_, { id }) => del('usuarios', `/sedes/${id}`),
+    updateSede: (_, { _id, input }) => put('usuarios', `/sedes/${_id}`, input),
+    deleteSede: (_, { _id }) => del('usuarios', `/sedes/${_id}`),
 
     // Practicas
     createPractica: (_, { input }) => post('practicas', '/practicas', input),
-    updatePractica: (_, { id, input }) => put('practicas', `/practicas/${id}`, input),
-    deletePractica: (_, { id }) => del('practicas', `/practicas/${id}`),
+    updatePractica: (_, { _id, input }) => put('practicas', `/practicas/${_id}`, input),
+    deletePractica: (_, { _id }) => del('practicas', `/practicas/${_id}`),
 
     createCentroPractica: (_, { input }) => post('practicas', '/centros', input),
-    updateCentroPractica: (_, { id, input }) => put('practicas', `/centros/${id}`, input),
-    deleteCentroPractica: (_, { id }) => del('practicas', `/centros/${id}`),
+    updateCentroPractica: (_, { _id, input }) => put('practicas', `/centros/${_id}`, input),
+    deleteCentroPractica: (_, { _id }) => del('practicas', `/centros/${_id}`),
 
     // Documentos
     createDocumento: (_, { input }) => post('documentos', '/documentos', input),
-    updateDocumento: (_, { id, input }) => put('documentos', `/documentos/${id}`, input),
-    deleteDocumento: (_, { id }) => del('documentos', `/documentos/${id}`),
+    updateDocumento: (_, { _id, input }) => put('documentos', `/documentos/${_id}`, input),
+    deleteDocumento: (_, { _id }) => del('documentos', `/documentos/${_id}`),
 
     createDocumentoApoyo: (_, { input }) => post('documentos', '/apoyo', input),
-    updateDocumentoApoyo: (_, { id, input }) => put('documentos', `/apoyo/${id}`, input),
-    deleteDocumentoApoyo: (_, { id }) => del('documentos', `/apoyo/${id}`),
+    updateDocumentoApoyo: (_, { _id, input }) => put('documentos', `/apoyo/${_id}`, input),
+    deleteDocumentoApoyo: (_, { _id }) => del('documentos', `/apoyo/${_id}`),
 
     createInformePractica: (_, { input }) => post('documentos', '/informes', input),
-    updateInformePractica: (_, { id, input }) => put('documentos', `/informes/${id}`, input),
-    deleteInformePractica: (_, { id }) => del('documentos', `/informes/${id}`),
+    updateInformePractica: (_, { _id, input }) => put('documentos', `/informes/${_id}`, input),
+    deleteInformePractica: (_, { _id }) => del('documentos', `/informes/${_id}`),
 
     // Evaluaciones
     createFormulario: (_, { input }) => post('evaluaciones', '/formularios', input),
-    updateFormulario: (_, { id, input }) => put('evaluaciones', `/formularios/${id}`, input),
-    deleteFormulario: (_, { id }) => del('evaluaciones', `/formularios/${id}`),
+    updateFormulario: (_, { _id, input }) => put('evaluaciones', `/formularios/${_id}`, input),
+    deleteFormulario: (_, { _id }) => del('evaluaciones', `/formularios/${_id}`),
 
     createActa1: (_, { input }) => post('evaluaciones', '/actas1', input),
-    updateActa1: (_, { id, input }) => put('evaluaciones', `/actas1/${id}`, input),
-    deleteActa1: (_, { id }) => del('evaluaciones', `/actas1/${id}`),
+    updateActa1: (_, { _id, input }) => put('evaluaciones', `/actas1/${_id}`, input),
+    deleteActa1: (_, { _id }) => del('evaluaciones', `/actas1/${_id}`),
 
     createActa2: (_, { input }) => post('evaluaciones', '/actas2', input),
-    updateActa2: (_, { id, input }) => put('evaluaciones', `/actas2/${id}`, input),
-    deleteActa2: (_, { id }) => del('evaluaciones', `/actas2/${id}`),
+    updateActa2: (_, { _id, input }) => put('evaluaciones', `/actas2/${_id}`, input),
+    deleteActa2: (_, { _id }) => del('evaluaciones', `/actas2/${_id}`),
 
     createEvaluacionInformePractica: (_, { input }) => post('evaluaciones', '/evaluaciones', input),
-    updateEvaluacionInformePractica: (_, { id, input }) =>
-      put('evaluaciones', `/evaluaciones/${id}`, input),
-    deleteEvaluacionInformePractica: (_, { id }) => del('evaluaciones', `/evaluaciones/${id}`),
+    updateEvaluacionInformePractica: (_, { _id, input }) =>
+      put('evaluaciones', `/evaluaciones/${_id}`, input),
+    deleteEvaluacionInformePractica: (_, { _id }) => del('evaluaciones', `/evaluaciones/${_id}`),
 
     createActaFinal: (_, { input }) => post('evaluaciones', '/actasfinal', input),
-    updateActaFinal: (_, { id, input }) => put('evaluaciones', `/actasfinal/${id}`, input),
-    deleteActaFinal: (_, { id }) => del('evaluaciones', `/actasfinal/${id}`),
+    updateActaFinal: (_, { _id, input }) => put('evaluaciones', `/actasfinal/${_id}`, input),
+    deleteActaFinal: (_, { _id }) => del('evaluaciones', `/actasfinal/${_id}`),
 
     // Notificaciones
     createNotificacion: (_, { input }) => post('notificaciones', '/notificaciones', input),
-    updateNotificacion: (_, { id, input }) => put('notificaciones', `/notificaciones/${id}`, input),
-    deleteNotificacion: (_, { id }) => del('notificaciones', `/notificaciones/${id}`),
+    updateNotificacion: (_, { _id, input }) => put('notificaciones', `/notificaciones/${_id}`, input),
+    deleteNotificacion: (_, { _id }) => del('notificaciones', `/notificaciones/${_id}`),
   },
 };
 

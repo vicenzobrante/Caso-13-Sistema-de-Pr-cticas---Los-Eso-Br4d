@@ -8,31 +8,31 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     coordinadorController.getCoordinadores
 );
 
 router.get(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     coordinadorController.getCoordinadorById
 );
 
 router.post(
     '/',
-    authMiddleware,
+    //authMiddleware,
     coordinadorController.crearCoordinador
 );
 
 router.put(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     coordinadorController.actualizarCoordinador
 );
 
 router.delete(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     coordinadorController.eliminarCoordinador
 );
 

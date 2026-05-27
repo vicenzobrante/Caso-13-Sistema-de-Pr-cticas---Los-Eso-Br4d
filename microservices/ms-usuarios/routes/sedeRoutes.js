@@ -11,7 +11,7 @@ router.get(
 );
 
 router.get(
-    '/:id',
+    '/:_id',
     sedeController.getSedeById
 );
 
@@ -21,12 +21,12 @@ router.post(
 );
 
 router.put(
-    '/:id',
+    '/:_id',
     sedeController.actualizarSede
 );
 
 router.delete(
-    '/:id',
+    '/:_id',
     sedeController.eliminarSede
 );
 

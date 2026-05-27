@@ -19,7 +19,7 @@ exports.getCoordinadorById = async (req, res, next) => {
 
         const coordinador =
             await coordinadorService.getCoordinadorById(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(coordinador);
@@ -47,7 +47,7 @@ exports.actualizarCoordinador = async (req, res, next) => {
 
         const coordinadorActualizado =
             await coordinadorService.actualizarCoordinador(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -63,7 +63,7 @@ exports.eliminarCoordinador = async (req, res, next) => {
 
         const resultado =
             await coordinadorService.eliminarCoordinador(
-                req.params.id
+                req.params._id
             );
 
         res.status(200).json(resultado);

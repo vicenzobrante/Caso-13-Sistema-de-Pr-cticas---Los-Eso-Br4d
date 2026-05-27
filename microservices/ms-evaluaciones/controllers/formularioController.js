@@ -16,7 +16,7 @@ exports.getFormularioById = async (req, res, next) => {
     try {
 
         const formulario =
-            await formularioService.getFormularioById(req.params.id);
+            await formularioService.getFormularioById(req.params._id);
 
         res.status(200).json(formulario);
 
@@ -43,7 +43,7 @@ exports.actualizarFormulario = async (req, res, next) => {
 
         const formularioActualizado =
             await formularioService.actualizarFormulario(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -58,7 +58,7 @@ exports.eliminarFormulario = async (req, res, next) => {
     try {
 
         const resultado =
-            await formularioService.eliminarFormulario(req.params.id);
+            await formularioService.eliminarFormulario(req.params._id);
 
         res.status(200).json(resultado);
 

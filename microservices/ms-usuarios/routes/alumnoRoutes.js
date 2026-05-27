@@ -8,31 +8,31 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     alumnoController.getAlumnos
 );
 
 router.get(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     alumnoController.getAlumnoById
 );
 
 router.post(
     '/',
-    authMiddleware,
+    //authMiddleware,
     alumnoController.crearAlumno
 );
 
 router.put(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     alumnoController.actualizarAlumno
 );
 
 router.delete(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     alumnoController.eliminarAlumno
 );
 

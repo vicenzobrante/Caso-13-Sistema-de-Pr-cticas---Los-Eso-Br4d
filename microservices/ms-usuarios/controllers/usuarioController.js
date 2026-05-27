@@ -15,7 +15,7 @@ exports.getUsuarios = async (req, res, next) => {
 exports.getUsuarioById = async (req, res, next) => {
     try {
 
-        const usuario = await usuarioService.getUsuarioById(req.params.id);
+        const usuario = await usuarioService.getUsuarioById(req.params._id);
 
         res.status(200).json(usuario);
 

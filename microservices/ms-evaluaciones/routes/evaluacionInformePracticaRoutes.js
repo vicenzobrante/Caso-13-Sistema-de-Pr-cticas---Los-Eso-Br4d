@@ -13,7 +13,7 @@ router.get(
 );
 
 router.get(
-    '/:id',
+    '/:_id',
     authMiddleware,
     evaluacionInformePracticaController.getEvaluacionInformePracticaById
 );
@@ -25,13 +25,13 @@ router.post(
 );
 
 router.put(
-    '/:id',
+    '/:_id',
     authMiddleware,
     evaluacionInformePracticaController.actualizarEvaluacionInformePractica
 );
 
 router.delete(
-    '/:id',
+    '/:_id',
     authMiddleware,
     evaluacionInformePracticaController.eliminarEvaluacionInformePractica
 );

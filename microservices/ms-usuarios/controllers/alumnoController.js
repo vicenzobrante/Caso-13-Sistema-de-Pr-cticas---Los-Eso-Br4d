@@ -16,7 +16,7 @@ exports.getAlumnoById = async (req, res, next) => {
     try {
 
         const alumno =
-            await alumnoService.getAlumnoById(req.params.id);
+            await alumnoService.getAlumnoById(req.params._id);
 
         res.status(200).json(alumno);
 
@@ -43,7 +43,7 @@ exports.actualizarAlumno = async (req, res, next) => {
 
         const alumnoActualizado =
             await alumnoService.actualizarAlumno(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -58,7 +58,7 @@ exports.eliminarAlumno = async (req, res, next) => {
     try {
 
         const resultado =
-            await alumnoService.eliminarAlumno(req.params.id);
+            await alumnoService.eliminarAlumno(req.params._id);
 
         res.status(200).json(resultado);
 

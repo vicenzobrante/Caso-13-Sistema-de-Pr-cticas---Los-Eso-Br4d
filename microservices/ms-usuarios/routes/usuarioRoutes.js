@@ -8,13 +8,13 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     usuarioController.getUsuarios
 );
 
 router.get(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     usuarioController.getUsuarioById
 );
 
@@ -29,14 +29,14 @@ router.post(
 );
 
 router.put(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     usuarioController.actualizarUsuario
 );
 
 router.delete(
-    '/:id',
-    authMiddleware,
+    '/:_id',
+    //authMiddleware,
     usuarioController.eliminarUsuario
 );
 

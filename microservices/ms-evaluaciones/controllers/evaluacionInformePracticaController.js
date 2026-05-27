@@ -16,7 +16,7 @@ exports.getEvaluacionInformePracticaById = async (req, res, next) => {
     try {
 
         const evaluacionInformePractica =
-            await evaluacionInformePracticaService.getEvaluacionInformePracticaById(req.params.id);
+            await evaluacionInformePracticaService.getEvaluacionInformePracticaById(req.params._id);
 
         res.status(200).json(evaluacionInformePractica);
 
@@ -43,7 +43,7 @@ exports.actualizarEvaluacionInformePractica = async (req, res, next) => {
 
         const evaluacionInformePracticaActualizado =
             await evaluacionInformePracticaService.actualizarEvaluacionInformePractica(
-                req.params.id,
+                req.params._id,
                 req.body
             );
 
@@ -58,7 +58,7 @@ exports.eliminarEvaluacionInformePractica = async (req, res, next) => {
     try {
 
         const resultado =
-            await evaluacionInformePracticaService.eliminarEvaluacionInformePractica(req.params.id);
+            await evaluacionInformePracticaService.eliminarEvaluacionInformePractica(req.params._id);
 
         res.status(200).json(resultado);
 
