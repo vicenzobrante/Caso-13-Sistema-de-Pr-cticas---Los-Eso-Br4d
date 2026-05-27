@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
+const Documento = require("../models/Documento");
 
 const DocumentoApoyoSchema = new mongoose.Schema({
-  documentoId: { type: mongoose.Schema.Types.ObjectId, required: true },
-  nombre: { type: String, required: true, trim: true },
+  titulo: { type: String, required: true, trim: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model("DocumentoApoyo", DocumentoApoyoSchema);
+module.exports = Documento.discriminator("DocumentoApoyo", DocumentoApoyoSchema);
