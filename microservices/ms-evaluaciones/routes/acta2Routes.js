@@ -8,31 +8,31 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     acta2Controller.getActa2s
 );
 
 router.get(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     acta2Controller.getActa2ById
 );
 
 router.post(
     '/',
-    authMiddleware,
+    //authMiddleware,
     acta2Controller.crearActa2
 );
 
 router.put(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     acta2Controller.actualizarActa2
 );
 
 router.delete(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     acta2Controller.eliminarActa2
 );
 

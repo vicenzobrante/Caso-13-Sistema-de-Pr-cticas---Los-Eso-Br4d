@@ -8,31 +8,31 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     evaluacionInformePracticaController.getEvaluacionInformePracticas
 );
 
 router.get(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     evaluacionInformePracticaController.getEvaluacionInformePracticaById
 );
 
 router.post(
     '/',
-    authMiddleware,
+    //authMiddleware,
     evaluacionInformePracticaController.crearEvaluacionInformePractica
 );
 
 router.put(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     evaluacionInformePracticaController.actualizarEvaluacionInformePractica
 );
 
 router.delete(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     evaluacionInformePracticaController.eliminarEvaluacionInformePractica
 );
 

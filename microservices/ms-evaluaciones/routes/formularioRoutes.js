@@ -8,31 +8,31 @@ const authMiddleware =
 
 router.get(
     '/',
-    authMiddleware,
+    //authMiddleware,
     formularioController.getFormularios
 );
 
 router.get(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     formularioController.getFormularioById
 );
 
 router.post(
     '/',
-    authMiddleware,
+    //authMiddleware,
     formularioController.crearFormulario
 );
 
 router.put(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     formularioController.actualizarFormulario
 );
 
 router.delete(
     '/:_id',
-    authMiddleware,
+    //authMiddleware,
     formularioController.eliminarFormulario
 );
 

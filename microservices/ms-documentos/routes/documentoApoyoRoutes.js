@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const acta1Controller =
-    require('../controllers/acta1Controller');
+const documentoApoyoController =
+    require('../controllers/documentoApoyoController');
 
 const authMiddleware =
     require('../middlewares/authMiddleware');
@@ -9,31 +9,31 @@ const authMiddleware =
 router.get(
     '/',
     //authMiddleware,
-    acta1Controller.getActa1s
+    documentoApoyoController.getDocumentoApoyos
 );
 
 router.get(
     '/:_id',
     //authMiddleware,
-    acta1Controller.getActa1ById
+    documentoApoyoController.getDocumentoApoyoById
 );
 
 router.post(
     '/',
     //authMiddleware,
-    acta1Controller.crearActa1
+    documentoApoyoController.crearDocumentoApoyo
 );
 
 router.put(
     '/:_id',
     //authMiddleware,
-    acta1Controller.actualizarActa1
+    documentoApoyoController.actualizarDocumentoApoyo
 );
 
 router.delete(
     '/:_id',
     //authMiddleware,
-    acta1Controller.eliminarActa1
+    documentoApoyoController.eliminarDocumentoApoyo
 );
 
 module.exports = router;
