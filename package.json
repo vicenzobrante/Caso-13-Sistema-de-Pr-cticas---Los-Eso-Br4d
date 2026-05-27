@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "apollo-server": "^3.13.0",
     "apollo-server-express": "^3.13.0",
+    "axios": "^1.16.1",
     "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "debug": "^4.3.4",
     "dotenv": "^17.4.2",
-    "express": "^4.18.2",
+    "express": "^4.22.2",
     "graphql": "^16.14.0",
     "graphql-type-json": "^0.3.2",
     "lodash": "^4.17.21",
@@ -13,9 +15,31 @@
     "mongoose": "^6.13.9"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "gateway": "node microservices/gateway/index.js",
+    "ms-usuarios": "node microservices/ms-usuarios/index.js",
+    "ms-practicas": "node microservices/ms-practicas/index.js",
+    "ms-evaluaciones": "node microservices/ms-evaluaciones/index.js",
+    "ms-documentos": "node microservices/ms-documentos/index.js",
+    "ms-notificaciones": "node microservices/ms-notificaciones/index.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
-  }
+  },
+  "name": "caso-13-sistema-de-pr-cticas---los-eso-br4d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicenzobrante/Caso-13-Sistema-de-Pr-cticas---Los-Eso-Br4d.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vicenzobrante/Caso-13-Sistema-de-Pr-cticas---Los-Eso-Br4d/issues"
+  },
+  "homepage": "https://github.com/vicenzobrante/Caso-13-Sistema-de-Pr-cticas---Los-Eso-Br4d#readme"
 }
