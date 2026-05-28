@@ -1,4 +1,5 @@
 const Docente = require('../models/Docente');
+const mongoose = require('mongoose')
 
 exports.getDocentes = async () => {
 
@@ -18,9 +19,25 @@ exports.getDocenteById = async (id) => {
 
 exports.crearDocente = async (data) => {
 
-    const nuevoDocente = new Docente(data);
-
-    return await nuevoDocente.save();
+        const docenteActualizado = await mongoose.connection.db.collection('usuarios').findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(data.usuarioId) },
+            {
+                $set: {
+                    __t: 'Docente', 
+                    carrera: data.carreraId, 
+                    sede: data.sedeId        
+                }
+            },
+            { new: true, runValidators: true }
+        );
+        if (!docenteActualizado) {
+            throw new Error('El usuario base no existe');
+        }
+    
+        
+        return await Docente.findById(docenteActualizado._id)
+            .populate('carrera')
+            .populate('sede');
 };
 
 exports.actualizarDocente = async (id, data) => {

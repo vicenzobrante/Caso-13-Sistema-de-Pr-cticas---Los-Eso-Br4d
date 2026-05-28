@@ -1,5 +1,5 @@
 const Alumno = require('../models/Alumno');
-const Usuario = require('../models/Usuario');
+const mongoose = require('mongoose')
 exports.getAlumnos = async () => {
 
     return await Alumno.find();
@@ -18,26 +18,27 @@ exports.getAlumnoById = async (id) => {
 
 exports.crearAlumno = async (data) => {
 
-    const usuarioBase = await Usuario.findById(data.usuarioId);
-    
-    if (!usuarioBase) {
+    const alumnoActualizado = await mongoose.connection.db.collection('usuarios').findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.usuarioId) },
+        {
+            $set: {
+                __t: 'Alumno', 
+                matricula: data.matricula,
+                semestre: data.semestre,
+                carrera: data.carreraId, 
+                sede: data.sedeId        
+            }
+        },
+        { new: true, runValidators: true }
+    );
+    if (!alumnoActualizado) {
         throw new Error('El usuario base no existe');
     }
 
-    const datosCompletos = {
-        nombre: usuarioBase.nombre,
-        apellido: usuarioBase.apellido,
-        correo: usuarioBase.correo,
-        contrasena: usuarioBase.contrasena, 
-        matricula: data.matricula,
-        semestre: data.semestre,
-        carreraId: data.carreraId,
-        sedeId: data.sedeId
-    };
-
-    const nuevoAlumno = new Alumno(datosCompletos);
-
-    return await nuevoAlumno.save();
+    
+    return await Alumno.findById(alumnoActualizado._id)
+        .populate('carrera')
+        .populate('sede');
 };
 
 exports.actualizarAlumno = async (id, data) => {

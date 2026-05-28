@@ -9,5 +9,8 @@ const UsuarioSchema = new mongoose.Schema({
     correo: { type: String, required: true, unique: true, },
     contrasena: {type: String, required: true, },
     telefono: String,
-}, options);
+}, {
+    collection: 'usuarios',
+    discriminatorKey: '__t'
+});
 module.exports = mongoose.model('Usuario', UsuarioSchema);

@@ -12,7 +12,7 @@ const typeDefs = gql`
     type Alumno { id: ID! usuario: Usuario! matricula: String! carrera: Carrera! semestre: Int! sede: Sede! }
     type Docente { id: ID! usuario: Usuario! carrera: Carrera! sede: Sede! }
     type CoordinadorCarrera { id: ID! usuario: Usuario! carrera: Carrera! sede: Sede! }
-    type Empleador { id: ID! usuario: Usuario! empresa: CentroPractica! cargo: String! }
+    type Empleador { id: ID! usuario: Usuario! empresa: String! cargo: String! }
     type JefeCarrera { id: ID! usuario: Usuario! carrera: Carrera! sede: Sede! }
 
     input AlumnoInput { usuario: ID! matricula: String! carrera: ID! semestre: Int! sede: ID! }
@@ -63,8 +63,8 @@ const typeDefs = gql`
     input DocenteInput { usuario: ID! carrera: ID! sede: ID! }
     input DocenteUpdateInput { usuario: ID carrera: ID sede: ID }
 
-    input EmpleadorInput { usuario: ID! empresa: ID! cargo: String }
-    input EmpleadorUpdateInput { usuario: ID empresa: ID cargo: String }
+    input EmpleadorInput { usuario: ID! empresa: String! cargo: String }
+    input EmpleadorUpdateInput { usuario: ID empresa: String cargo: String }
 
     input JefeCarreraInput { usuario: ID! carrera: ID! sede: ID! }
     input JefeCarreraUpdateInput { usuario: ID carrera: ID sede: ID }

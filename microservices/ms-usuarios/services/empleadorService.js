@@ -1,4 +1,5 @@
 const Empleador = require('../models/Empleador');
+const mongoose = require('mongoose')
 
 exports.getEmpleadores = async () => {
 
@@ -19,10 +20,25 @@ exports.getEmpleadorById = async (id) => {
 
 exports.crearEmpleador = async (data) => {
 
-    const nuevoEmpleador =
-        new Empleador(data);
-
-    return await nuevoEmpleador.save();
+        const empleadorActualizado = await mongoose.connection.db.collection('usuarios').findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(data.usuarioId) },
+            {
+                $set: {
+                    __t: 'Empleador', 
+                    cargo: data.cargo, 
+                    empresa: data.empresa        
+                }
+            },
+            { new: true, runValidators: true }
+        );
+        if (!empleadorActualizado) {
+            throw new Error('El usuario base no existe');
+        }
+    
+        
+        return await Empleador.findById(empleadorActualizado._id)
+            .populate('carrera')
+            .populate('sede');
 };
 
 exports.actualizarEmpleador = async (id, data) => {

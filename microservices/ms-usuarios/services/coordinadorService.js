@@ -1,5 +1,6 @@
 const CoordinadorCarrera =
     require('../models/CoordinadorCarrera');
+const mongoose = require('mongoose')
 
 exports.getCoordinadores = async () => {
 
@@ -20,10 +21,27 @@ exports.getCoordinadorById = async (id) => {
 
 exports.crearCoordinador = async (data) => {
 
-    const nuevoCoordinador =
-        new CoordinadorCarrera(data);
 
-    return await nuevoCoordinador.save();
+        const coordinadorActualizado = await mongoose.connection.db.collection('usuarios').findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(data.usuarioId) },
+            {
+                $set: {
+                    __t: 'CoordinadorCarrera', 
+                    carrera: data.carreraId, 
+                    sede: data.sedeId        
+                }
+            },
+            { new: true, runValidators: true }
+        );
+        if (!coordinadorActualizado) {
+            throw new Error('El usuario base no existe');
+        }
+    
+        
+        return await CoordinadorCarrera.findById(coordinadorActualizado._id)
+            .populate('carrera')
+            .populate('sede');
+
 };
 
 exports.actualizarCoordinador = async (id, data) => {

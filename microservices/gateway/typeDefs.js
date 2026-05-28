@@ -61,7 +61,7 @@ const typeDefs = gql`
   type Empleador {
     _id: ID!
     usuario: Usuario!
-    empresa: CentroPractica!
+    empresa: String!
     cargo: String
   }
 
@@ -197,8 +197,8 @@ const typeDefs = gql`
   input JefeCarreraInput { usuarioId: ID! carreraId: ID! sedeId: ID! }
   input JefeCarreraUpdateInput { carreraId: ID sedeId: ID }
 
-  input EmpleadorInput { usuarioId: ID! empresaId: ID! cargo: String }
-  input EmpleadorUpdateInput { empresaId: ID cargo: String }
+  input EmpleadorInput { usuarioId: ID! empresa: String cargo: String }
+  input EmpleadorUpdateInput { empresa: String cargo: String }
 
   input CentroPracticaInput {
     nombreEmpresa: String!

@@ -1,6 +1,10 @@
 const JefeCarrera =
     require('../models/JefeCarrera');
 
+
+
+const mongoose = require('mongoose');
+
 exports.getJefesCarrera = async () => {
 
     return await JefeCarrera.find();
@@ -20,10 +24,25 @@ exports.getJefeCarreraById = async (id) => {
 
 exports.crearJefeCarrera = async (data) => {
 
-    const nuevoJefe =
-        new JefeCarrera(data);
-
-    return await nuevoJefe.save();
+        const jefeCarreraActualizado = await mongoose.connection.db.collection('usuarios').findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(data.usuarioId) },
+            {
+                $set: {
+                    __t: 'JefeCarrera', 
+                    carrera: data.carreraId, 
+                    sede: data.sedeId        
+                }
+            },
+            { new: true, runValidators: true }
+        );
+        if (!jefeCarreraActualizado) {
+            throw new Error('El usuario base no existe');
+        }
+    
+        
+        return await JefeCarrera.findById(jefeCarreraActualizado._id)
+            .populate('carrera')
+            .populate('sede');
 };
 
 exports.actualizarJefeCarrera = async (id, data) => {
