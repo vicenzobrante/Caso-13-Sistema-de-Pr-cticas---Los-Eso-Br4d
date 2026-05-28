@@ -1,4 +1,6 @@
 const EvaluacionInformePractica = require('../models/EvaluacionInformePractica');
+const mongoose = require("mongoose");
+const ActaFinal = require("../models/ActaFinal");
 
 exports.getEvaluacionInformePracticas = async () => {
 
@@ -18,9 +20,23 @@ exports.getEvaluacionInformePracticaById = async (id) => {
 
 exports.crearEvaluacionInformePractica = async (data) => {
 
-    const nuevoEvaluacionInformePractica = new EvaluacionInformePractica(data);
+    const nuevoEvaluacionInformePractica = await mongoose.connection.db.collection('formularios').findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.formularioId) },
+        {
+            $set: {
+                __t: 'Evaluacion_Informe_Practica',
+                criterios: data.criterios,
+                informePracticaId: data.informePracticaId,
+                notaPonderada: data.notaPonderada,
+            }
+        },
+        { new: true, runValidators: true }
+    );
+    if (!nuevoEvaluacionInformePractica) {
+        throw new Error('El usuario base no existe');
+    }
 
-    return await nuevoEvaluacionInformePractica.save();
+    return await EvaluacionInformePractica.findById(nuevoEvaluacionInformePractica._id)
 };
 
 exports.actualizarEvaluacionInformePractica = async (id, data) => {

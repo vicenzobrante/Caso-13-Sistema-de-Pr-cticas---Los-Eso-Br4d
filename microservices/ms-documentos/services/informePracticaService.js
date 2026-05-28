@@ -1,4 +1,5 @@
 const InformePractica = require('../models/InformePractica');
+const mongoose = require("mongoose");
 
 exports.getInformePracticas = async () => {
 
@@ -18,9 +19,22 @@ exports.getInformePracticaById = async (id) => {
 
 exports.crearInformePractica = async (data) => {
 
-    const nuevoInformePractica = new InformePractica(data);
+    const nuevoInformePractica = await mongoose.connection.db.collection('documentos').findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.documentoId) },
+        {
+            $set: {
+                __t: 'Informe_Practica',
+                estado: data.estado,
+                observaciones: data.observaciones,
+            }
+        },
+        { new: true, runValidators: true }
+    );
+    if (!nuevoInformePractica) {
+        throw new Error('El usuario base no existe');
+    }
 
-    return await nuevoInformePractica.save();
+    return await InformePractica.findById(nuevoInformePractica._id)
 };
 
 exports.actualizarInformePractica = async (id, data) => {

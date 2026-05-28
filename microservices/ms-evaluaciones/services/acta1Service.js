@@ -1,4 +1,5 @@
 const Acta1 = require('../models/Acta1');
+const mongoose = require("mongoose");
 
 exports.getActa1s = async () => {
 
@@ -18,9 +19,25 @@ exports.getActa1ById = async (id) => {
 
 exports.crearActa1 = async (data) => {
 
-    const nuevoActa1 = new Acta1(data);
+    const nuevoActa1 = await mongoose.connection.db.collection('formularios').findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.formularioId) },
+        {
+            $set: {
+                __t: 'Acta_1',
+                centroDePractica: data.centroDePractica,
+                online: data.online,
+                tareas: data.tareas,
+                fechaTermino: data.fechaTermino,
+            }
+        },
+        { new: true, runValidators: true }
+    );
+    if (!nuevoActa1) {
+        throw new Error('El usuario base no existe');
+    }
 
-    return await nuevoActa1.save();
+    return await Acta1.findById(nuevoActa1._id)
+        .populate('centroDePractica')
 };
 
 exports.actualizarActa1 = async (id, data) => {

@@ -1,4 +1,6 @@
 const Acta2 = require('../models/Acta2');
+const mongoose = require("mongoose");
+const Acta1 = require("../models/Acta1");
 
 exports.getActa2s = async () => {
 
@@ -18,9 +20,22 @@ exports.getActa2ById = async (id) => {
 
 exports.crearActa2 = async (data) => {
 
-    const nuevoActa2 = new Acta2(data);
+    const nuevoActa2 = await mongoose.connection.db.collection('formularios').findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.formularioId) },
+        {
+            $set: {
+                __t: 'Acta_2',
+                criterios: data.criterios,
+                notaPonderada: data.notaPonderada,
+            }
+        },
+        { new: true, runValidators: true }
+    );
+    if (!nuevoActa2) {
+        throw new Error('El usuario base no existe');
+    }
 
-    return await nuevoActa2.save();
+    return await Acta2.findById(nuevoActa2._id)
 };
 
 exports.actualizarActa2 = async (id, data) => {

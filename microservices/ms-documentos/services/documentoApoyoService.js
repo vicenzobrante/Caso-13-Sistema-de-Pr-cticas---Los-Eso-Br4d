@@ -1,4 +1,5 @@
 const DocumentoApoyo = require('../models/DocumentoApoyo');
+const mongoose = require("mongoose");
 
 exports.getDocumentoApoyos = async () => {
 
@@ -18,9 +19,21 @@ exports.getDocumentoApoyoById = async (id) => {
 
 exports.crearDocumentoApoyo = async (data) => {
 
-    const nuevoDocumentoApoyo = new DocumentoApoyo(data);
+    const nuevoDocumentoApoyo = await mongoose.connection.db.collection('documentos').findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.documentoId) },
+        {
+            $set: {
+                __t: 'Documento_Apoyo',
+                titulo: data.titulo,
+            }
+        },
+        { new: true, runValidators: true }
+    );
+    if (!nuevoDocumentoApoyo) {
+        throw new Error('El usuario base no existe');
+    }
 
-    return await nuevoDocumentoApoyo.save();
+    return await DocumentoApoyo.findById(nuevoDocumentoApoyo._id)
 };
 
 exports.actualizarDocumentoApoyo = async (id, data) => {

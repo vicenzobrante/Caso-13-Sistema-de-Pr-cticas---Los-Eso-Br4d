@@ -1,4 +1,6 @@
 const ActaFinal = require('../models/ActaFinal');
+const mongoose = require("mongoose");
+const Acta1 = require("../models/Acta1");
 
 exports.getActaFinals = async () => {
 
@@ -18,9 +20,24 @@ exports.getActaFinalById = async (id) => {
 
 exports.crearActaFinal = async (data) => {
 
-    const nuevoActaFinal = new ActaFinal(data);
+    const nuevoActaFinal = await mongoose.connection.db.collection('formularios').findOneAndUpdate(
+        { _id: new mongoose.Types.ObjectId(data.formularioId) },
+        {
+            $set: {
+                __t: 'Acta_Final',
+                acta2Id: data.acta2Id,
+                evaluacionInformePracticaId: data.evaluacionInformePracticaId,
+                notaPonderada: data.notaPonderada,
+            }
+        },
+        { new: true, runValidators: true }
+    );
+    if (!nuevoActaFinal) {
+        throw new Error('El usuario base no existe');
+    }
 
-    return await nuevoActaFinal.save();
+    return await ActaFinal.findById(nuevoActaFinal._id)
+        .populate('centroDePractica')
 };
 
 exports.actualizarActaFinal = async (id, data) => {
