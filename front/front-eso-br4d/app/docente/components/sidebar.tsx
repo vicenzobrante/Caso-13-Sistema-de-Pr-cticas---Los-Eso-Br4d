@@ -2,12 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSidebar } from "@/app/contexts/sidebar-context";
+import { useSidebar } from "@/app/docente/contexts/sidebar-context";
 
 const menuItems = [
-  { name: "Usuarios", href: "/usuarios" },
-  { name: "Sedes", href: "/sedes" },
-  { name: "Documentos", href: "/documentos" },
+  { name: "Lista de Prácticantes", href: "/docente/practicantes" },
+  { name: "Documentos", href: "/docente/documentos" },
 ];
 
 // Altura de tu Navbar. Ajusta si no es h-16 (4rem)
@@ -45,7 +44,7 @@ export default function Sidebar() {
                 key={item.href}
                 href={item.href}
                 onClick={close}
-                className={`px-3 py-2.5 rounded-md text-sm transition-colors ${
+                className={`px-3 py-2.5 rounded-md text-sm transition-colors text-xl ${
                   isActive
                     ? "font-bold text-gray-900"
                     : "font-medium text-gray-600 hover:bg-white/60 hover:text-gray-900"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useSidebar } from "@/app/contexts/sidebar-context";
+import { useSidebar } from "@/app/jefecarrera/contexts/sidebar-context";
 
 export function SidebarToggle() {
   const { toggle } = useSidebar();

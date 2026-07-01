@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useSidebar } from "@/app/contexts/sidebar-context";
+import { useSidebar } from "@/app/coordinador/contexts/sidebar-context";
 
 const Navbar = () => {
   const { toggle } = useSidebar();
